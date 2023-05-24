@@ -54,7 +54,7 @@ export default function CardsSlide({ id, name }) {
         <>
           <SwiperSlide key={show?.id}>
             <ShowCard
-              image={show?.image?.original}
+              image={show?.image?.medium}
               name={show?.name}
               genre={show?.genres}
               rating={show?.rating?.average}

@@ -28,7 +28,7 @@ export default function ShowHeader(props) {
           // spaceBetween={5}
           slidesPerView={1}
           navigation={false}
-          Pagination
+          pagination={{ clickable: true }}
           onSwiper={(swiper) => console.log(swiper)}
           // onSlideChange={() => console.log("slide change")}
           loop={true}
