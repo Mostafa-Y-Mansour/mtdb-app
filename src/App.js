@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useEffect } from "react";
+import axios from "axios";
+import MainNavbar from "./components/MainNavbar";
+import { Outlet } from "react-router-dom";
 
 function App() {
+  async function getFlightData() {
+    const options = "https://api.tvmaze.com/search/shows?q=never+have+i+ever";
+
+    try {
+      const response = await axios.request(options);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    getFlightData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <MainNavbar />
+      <Outlet />
+    </>
   );
 }
 

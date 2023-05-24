@@ -1,0 +1,32 @@
+.show-content {
+  margin: 100px auto;
+  width: 80%;
+  max-width: 1000px;
+  color: #fff;
+}
+
+.show-content > .title {
+  font-size: 5.9rem;
+}
+
+.show-content > p {
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+}
+
+.show-content > .description {
+  font-size: 1.2rem;
+}
+
+.show-content > .meta-data > span {
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 415px) {
+  .show-content > .title {
+    font-size: 2.9rem;
+  }
+  .show-content > .description {
+    font-size: 1.2rem;
+  }
+}

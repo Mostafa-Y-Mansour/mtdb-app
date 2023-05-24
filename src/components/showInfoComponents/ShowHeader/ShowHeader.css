@@ -1,0 +1,54 @@
+.cover-image {
+  width: 100%;
+  height: 400px;
+  position: relative;
+  box-shadow: 0px 5px 20px 20px #000000b0;
+}
+.main-swiper,
+.swiper-image {
+  z-index: 0;
+  height: 100%;
+}
+
+.cover-image img,
+.show-image > img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.cover-image > .img-overlay {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #00000000 0%, #000000be 100%);
+  pointer-events: none;
+}
+
+.show-image {
+  z-index: 2;
+  position: absolute;
+  bottom: -50px;
+  left: 100px;
+  margin-right: 50px;
+  max-width: 250px;
+}
+
+.show-image > img {
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  box-shadow: 0px 10px 20px 8px #000000b0;
+}
+
+@media screen and (max-width: 768px) {
+  .show-image {
+    left: 40px;
+    max-width: 150px;
+  }
+}
