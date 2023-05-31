@@ -19,16 +19,18 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-import { getShowPage } from "../../services/api";
+import { getAllShowsById } from "../../services/api";
 
 SwiperCore.use([Autoplay]);
+
 export default function CardsSlide({ id, name }) {
+  const [cardView, setCardView] = useState(window.innerWidth / 270);
   const [showData, setShowData] = useState("pending");
 
   // fetch the data from getShowPage API
   const getShowList = async (id) => {
     try {
-      const data = await getShowPage(id).then((res) => res.data);
+      const data = await getAllShowsById(id).then((res) => res.data);
       return setShowData(data);
     } catch (err) {
       console.error("Error", err.response.data);
@@ -38,8 +40,7 @@ export default function CardsSlide({ id, name }) {
 
   useEffect(() => {
     getShowList(id);
-    console.log(showData);
-  }, []);
+  }, [id]);
 
   // loop on the data list from getShowList
   const showMap = () => {
@@ -52,8 +53,9 @@ export default function CardsSlide({ id, name }) {
 
       return (
         <>
-          <SwiperSlide key={show?.id}>
+          <SwiperSlide key={show?.name}>
             <ShowCard
+              id={show?.id}
               image={show?.image?.medium}
               name={show?.name}
               genre={show?.genres}
@@ -78,17 +80,13 @@ export default function CardsSlide({ id, name }) {
           // install Swiper modules
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           // spaceBetween={5}
-          slidesPerView={
-            window.innerWidth < 1200 ? window.innerWidth / 270 : 1200 / 270
-          }
+          slidesPerView={cardView}
           navigation
-          // onSwiper={(swiper) => console.log(swiper)}
-          // onSlideChange={() => console.log("slide change")}
-          // loop={true}
-          // autoplay={{
-          //   delay: 5000,
-          //   disableOnInteraction: false,
-          // }}
+          onResize={() => {
+            return window.innerWidth < 1200
+              ? setCardView(window.innerWidth / 270)
+              : setCardView(1200 / 270);
+          }}
         >
           {showMap()}
         </Swiper>

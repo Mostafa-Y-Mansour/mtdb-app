@@ -31,7 +31,7 @@
 .show-image {
   z-index: 2;
   position: absolute;
-  bottom: -50px;
+  bottom: -70px;
   left: 100px;
   margin-right: 50px;
   max-width: 250px;
@@ -48,7 +48,13 @@
 
 @media screen and (max-width: 768px) {
   .show-image {
-    left: 40px;
-    max-width: 150px;
+    left: 50%;
+    min-width: 200px;
+    max-width: 250px;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
   }
 }

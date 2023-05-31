@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getShowPage } from "../../services/api";
+import { getShow } from "../../services/api";
 
 const sliceName = "showInfoSlice";
 
@@ -7,7 +7,7 @@ export const fetchShow = createAsyncThunk(
   `${sliceName}/fetchShow`,
   async (id) => {
     try {
-      const data = await getShowPage(id).then((res) => res.data);
+      const data = await getShow(id).then((res) => res.data);
       return data;
     } catch (err) {
       console.error("Error", err.response.status);
@@ -30,4 +30,4 @@ export const showInfoSlice = createSlice({
   },
 });
 
-export const showCardReducer = showInfoSlice.reducer;
+export const showInfoReducer = showInfoSlice.reducer;

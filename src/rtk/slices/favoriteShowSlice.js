@@ -1,10 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const sliceName = "favoriteShowSlice";
+const sliceName = "favoriteShowsSlice";
 
-export const favoriteShowSlice = createSlice({
+const initialState = [];
+
+export const favoriteShowsSlice = createSlice({
   name: sliceName,
-  initialState: {},
-  reducers: {},
-  extraReducers: {},
+  initialState,
+  reducers: {
+    addFavoriteShow: (state, action) => {
+      return [...state, action.payload];
+    },
+    removeFavoriteShow: (state, action) => {
+      return state.filter((show) => show.id !== action.payload.id);
+    },
+  },
 });
+
+export const favoriteShowsReducers = favoriteShowsSlice.reducer;
+export const { addFavoriteShow, removeFavoriteShow } =
+  favoriteShowsSlice.actions;

@@ -1,0 +1,48 @@
+.sessions-container {
+  margin: auto;
+  width: 80%;
+  max-width: 700px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  perspective: 100px;
+}
+
+.sessions-container > span {
+  cursor: pointer;
+  color: #fff;
+  padding: 10px;
+  background-color: #2c3034;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  transition: all 100ms linear;
+  -webkit-transition: all 100ms linear;
+  -moz-transition: all 100ms linear;
+  -ms-transition: all 100ms linear;
+  -o-transition: all 100ms linear;
+}
+
+.sessions-container > span:hover {
+  transform: translateZ(5px);
+  -webkit-transform: translateZ(5px);
+  -moz-transform: translateZ(5px);
+  -ms-transform: translateZ(5px);
+  -o-transform: translateZ(5px);
+  box-shadow: 0px 0px 20px 5px #99999933;
+}
+
+.episodes-container {
+  margin: auto;
+  color: #fff;
+  width: 80%;
+}
+
+@media screen and (max-width: 768px) {
+  .episodes-container {
+    width: 100%;
+  }
+}

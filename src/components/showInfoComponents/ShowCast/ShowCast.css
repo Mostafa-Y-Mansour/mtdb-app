@@ -1,0 +1,34 @@
+.cast-container {
+  width: 100%;
+}
+
+.cast-container > h3 {
+  color: #fff;
+}
+.cast-container .cast-cards-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.cast-container .cast-cards-wrapper .cast-card {
+  text-align: center;
+  margin-bottom: 100px;
+  width: 200px;
+  height: 300px;
+  color: #fff;
+}
+
+.cast-container .cast-cards-wrapper .cast-card .person-image {
+  width: 100%;
+  margin: auto;
+}
+.cast-container .cast-cards-wrapper .cast-card .person-image img {
+  margin-bottom: 10px;
+  object-fit: cover;
+  width: 100%;
+  aspect-ratio: 9/13;
+
+  border: 5px solid #373b3e;
+}

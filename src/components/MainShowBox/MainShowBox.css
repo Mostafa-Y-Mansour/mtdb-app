@@ -1,15 +1,18 @@
+.main-swiper {
+  box-shadow: 0px 5px 20px 20px #000000b0;
+}
 .show-box {
   width: 100%;
   height: 47vw;
   position: relative;
-  box-shadow: 0px 5px 20px 20px #000000b0;
+  box-shadow: 0px 5px 20px 10px #000000b0;
 }
 
-.show-box > .image-holder {
+.show-box .image-holder {
   width: 100%;
   height: 100%;
 }
-.show-box > .image-holder .image-overlay {
+.show-box .image-holder .image-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -17,36 +20,37 @@
   height: 100%;
   background: linear-gradient(180deg, #00000000 0%, #000000be 100%);
 }
-.show-box > .image-holder > img {
+.show-box .image-holder > img {
   object-fit: cover;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.show-box > .show-info {
+.show-box .show-info {
   color: #ffffffdf;
   position: absolute;
   bottom: 0px;
   margin: 50px;
 }
 
-.show-box > .show-info > .show-name {
+.show-box .show-info > .show-name {
   font-size: 4.7rem;
   margin-bottom: 20px;
   max-width: 750px;
 }
-.show-box > .show-info > .show-meta {
+.show-box .show-info > .show-meta {
   font-size: 1rem;
   color: #dedede;
   margin: 0;
 }
-.show-box > .show-info > .show-summary {
+.show-box .show-info > .show-summary {
   width: 100%;
   max-width: 450px;
 }
 
-.show-box > .show-info > .show-details {
+.show-box .show-info > .show-details {
+  display: block;
   letter-spacing: 1.6px;
   font-size: 1.3rem;
   border: none;
@@ -59,9 +63,11 @@
   -o-border-radius: 50px;
   position: relative;
   text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
 }
 
-.show-box > .show-info > .show-details > svg {
+.show-box .show-info > .show-details > svg {
   position: absolute;
   right: 20px;
   top: 50%;
@@ -77,7 +83,7 @@
   -o-transition: right 200ms ease-in-out;
 }
 
-.show-box > .show-info > .show-details:hover > svg {
+.show-box .show-info > .show-details:hover > svg {
   right: 15px;
 }
 
@@ -86,33 +92,41 @@
     height: 65vw;
     min-height: 400px;
   }
-  .show-box > .show-info > .show-name {
+  .show-box .show-info > .show-name {
     font-size: 3.4rem;
   }
 }
 @media screen and (max-width: 800px) {
-  .show-box > .show-info {
+  .show-box .show-info {
     margin: 20px;
   }
-  .show-box > .show-info > .show-name {
+  .show-box .show-info > .show-name {
     font-size: 3.4rem;
   }
-  .show-box > .show-info > .show-details {
+  .show-box .show-info > .show-details {
     width: 200px;
   }
 }
 
-button:hover svg {
+.show-details:hover svg {
   transform: translateX(4px);
+  -webkit-transform: ;
+  -moz-transform: ;
+  -ms-transform: ;
+  -o-transform: ;
 }
 
-button svg {
+.show-details svg {
   transition: 0.2s;
   width: 15px;
   transition-delay: 0.2s;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -o-transition: 0.2s;
 }
 
-button {
+.show-details {
   position: relative;
   width: 250px;
   padding: 15px 25px;
@@ -137,7 +151,7 @@ button {
   -o-transition: all 250ms;
 }
 
-button::before {
+.show-details::before {
   content: "";
   position: absolute;
   top: 0;
@@ -148,19 +162,23 @@ button::before {
   z-index: -1;
   -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
   box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
-  transition: all 250ms;
-  border-radius: 50px;
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
   -ms-border-radius: 50px;
   -o-border-radius: 50px;
+  border-radius: 50px;
+  -webkit-transition: all 250ms;
+  -moz-transition: all 250ms;
+  -ms-transition: all 250ms;
+  -o-transition: all 250ms;
+  transition: all 250ms;
 }
 
-button:hover,
-button:hover svg {
+.show-details:hover,
+.show-details:hover svg {
   color: #e8e8e8;
 }
 
-button:hover::before {
+.show-details:hover::before {
   width: 100%;
 }

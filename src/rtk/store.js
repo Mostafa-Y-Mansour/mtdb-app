@@ -1,8 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { showCardReducer } from "./slices/showInfoSlice";
+import { showInfoReducer } from "./slices/showInfoSlice";
+import { showEpisodesReducer } from "./slices/showEpisodesSlice";
+import { favoriteShowsReducers } from "./slices/favoriteShowSlice";
 
 export const store = configureStore({
   reducer: {
-    showInfo: showCardReducer,
+    showInfo: showInfoReducer,
+    showEpisodes: showEpisodesReducer,
+    favoriteShows: favoriteShowsReducers,
   },
 });
