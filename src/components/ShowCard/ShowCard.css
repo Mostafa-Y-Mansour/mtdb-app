@@ -1,14 +1,11 @@
 .show-card {
   aspect-ratio: 9 /14;
   display: block;
-  width: 250px;
+  width: 200px;
   position: relative;
   cursor: pointer;
   overflow: hidden;
   text-decoration: none;
-}
-.show-card:first-of-type {
-  margin-left: 10px;
 }
 
 .show-card > .poster-image {
@@ -82,10 +79,10 @@
 }
 
 .show-card > .show-data > h2 {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
 }
 .show-card > .show-data > .show-meta {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #dedede;
   margin: 0;
 }

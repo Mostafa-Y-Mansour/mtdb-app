@@ -59,7 +59,7 @@ export default function MainNavbar() {
               setActiveTap("/my-shows");
             }}
           >
-            My Shows
+            Favorite Shows
           </Nav.Link>
 
           <Nav.Link

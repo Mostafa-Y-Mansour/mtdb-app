@@ -114,5 +114,4 @@ export default function MainShowBox(props) {
       {getRandomShow()}
     </Swiper>
   );
-  // return isLoading ? <h1>Loading</h1> : getRandomShow();
 }

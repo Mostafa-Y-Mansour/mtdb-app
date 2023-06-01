@@ -73,9 +73,8 @@ export default function ShowEpisodes({ showId }) {
             <tr>
               <th>EP.</th>
               <th>Name</th>
-              <th>Rating</th>
               <th>Release Date</th>
-              <th>Released</th>
+              <th>Aired</th>
             </tr>
           </thead>
           <tbody>{ShowSessionEpisode()}</tbody>

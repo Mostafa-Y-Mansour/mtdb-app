@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ShowInfoHeader from "../../components/showInfoComponents/ShowHeader";
-import ShowContent from "../../components/showInfoComponents/ShowContent";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchShow } from "../../rtk/slices/showInfoSlice";
 import { fetchEpisodes } from "../../rtk/slices/showEpisodesSlice";
+import ShowInfoHeader from "../../components/showInfoComponents/ShowHeader";
+import ShowContent from "../../components/showInfoComponents/ShowContent";
 import ShowEpisodes from "../../components/showInfoComponents/ShowEpisodes";
 import CardsSlide from "../../components/CardsSlide";
 import ShowCast from "../../components/showInfoComponents/ShowCast";
@@ -60,15 +60,15 @@ export default function ShowInfoPage(props) {
             poster={showInfo?.image?.original || showInfo?.image?.medium}
             coverImages={coverImages()}
           />
-          <Container>
+          <Container className="mb-5">
             <ShowContent showObj={showInfo} />
             <ShowEpisodes showId={prams.showId} />
 
             <ShowCast showId={prams.showId} />
-
+          </Container>
+          <div className="mb-5">
             <CardsSlide
               key={1000}
-              className="mb-5"
               id={
                 [90, 100, 110, 120, 130, 140, 150, 160, 170, 180][
                   Math.floor(Math.random() * 10)
@@ -76,7 +76,7 @@ export default function ShowInfoPage(props) {
               }
               name={"featured"}
             />
-          </Container>
+          </div>
         </>
       );
     }

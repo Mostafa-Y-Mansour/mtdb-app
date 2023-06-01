@@ -5,10 +5,6 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 export default function ShowEpisodeCard({ number, name, date, rate }) {
   const date1 = new Date(date);
   const date2 = new Date();
-  const date3 = new Date();
-
-  // console.log(date1 <= date2);
-  // console.log((date2 - date1) / 1000 / 60 / 60 / 24 / );
 
   const isReleased = () => {
     if (date1 <= date2) return "Yes";
@@ -18,10 +14,14 @@ export default function ShowEpisodeCard({ number, name, date, rate }) {
   return (
     <tr>
       <td>{number}</td>
-      <td>{name}</td>
       <td>
-        <FontAwesomeIcon color={"gold"} icon={faStar} /> {rate}
+        <span>{name}</span>
+        <br />
+        <span>
+          <FontAwesomeIcon color={"gold"} icon={faStar} /> {rate}
+        </span>
       </td>
+
       <td>{date}</td>
       <td>{isReleased()}</td>
     </tr>

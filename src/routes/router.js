@@ -3,6 +3,7 @@ import App from "../App";
 import HomePage from "../pages/HomePage";
 import ShowInfoPage from "../pages/ShowInfoPage";
 import DiscoverPage from "../pages/DiscoverPage";
+import FavoritePage from "../pages/FavoritePage";
 
 export const router = createBrowserRouter([
   {
@@ -10,7 +11,7 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "", element: <HomePage /> },
-      { path: "my-shows", element: <h1>a7med mo7sen</h1> },
+      { path: "my-shows", element: <FavoritePage /> },
       { path: "Discover", element: <DiscoverPage /> },
       { path: "shows/:showId", element: <ShowInfoPage /> },
     ],

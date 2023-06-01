@@ -24,7 +24,7 @@ import { getAllShowsById } from "../../services/api";
 SwiperCore.use([Autoplay]);
 
 export default function CardsSlide({ id, name }) {
-  const [cardView, setCardView] = useState(window.innerWidth / 270);
+  const [cardView, setCardView] = useState(window.innerWidth / 220);
   const [showData, setShowData] = useState("pending");
 
   // fetch the data from getShowPage API
@@ -84,8 +84,8 @@ export default function CardsSlide({ id, name }) {
           navigation
           onResize={() => {
             return window.innerWidth < 1200
-              ? setCardView(window.innerWidth / 270)
-              : setCardView(1200 / 270);
+              ? setCardView(window.innerWidth / 220)
+              : setCardView(1200 / 220);
           }}
         >
           {showMap()}

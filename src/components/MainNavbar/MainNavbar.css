@@ -86,9 +86,6 @@ body {
   .burger {
     display: block;
   }
-  .links-container {
-    background-color: #141414fa;
-  }
 
   .links-container .close {
     position: absolute;
@@ -96,12 +93,14 @@ body {
     right: 12px;
   }
   .links-container {
+    background-color: #141414fa;
     position: absolute;
     right: 0vh;
     top: 0vh;
     height: 100vh;
+    width: 100%;
+    max-width: 375px;
     flex-direction: column !important;
-    max-width: 300px;
     justify-content: flex-start !important;
     padding: 100px 30px !important;
     -webkit-transform: translateX(calc(100% + 1vh));

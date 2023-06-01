@@ -25,41 +25,32 @@ export default function AddToFavorite({ showObj }) {
   // console.log(showObj);
 
   const favoriteStateHandler = () => {
-    if (isFavorite && !favoriteShows.includes(showObj)) {
+    if (!isFavorite) {
       addShowToFavorites(showObj);
-      setIsFavorite(true);
     } else {
       removeShowFromFavorites(showObj);
-      setIsFavorite(false);
     }
   };
 
   useEffect(() => {
-    console.log("now", favoriteShows.includes(showObj));
-
+    console.log("isFavorite", isFavorite);
+    setIsFavorite(false);
     favoriteShows.forEach((show) => {
-      console.log("show", show);
-      console.log("showObj", showObj);
       if (show.id === showObj.id) {
-        console.log(isFavorite);
-        return setIsFavorite(true);
+        setIsFavorite(true);
       }
     });
-  }, [isFavorite]);
+  }, [favoriteShows, isFavorite]);
 
   return (
     <div className="add-favorite">
       <input
+        onClick={favoriteStateHandler}
         type="checkbox"
-        defaultChecked={false}
         id="favorite"
         name="favorite-checkbox"
         defaultValue="favorite-button"
-        onClick={() => {
-          setIsFavorite(!isFavorite);
-          favoriteStateHandler();
-        }}
-        // checked={isFavorite}
+        checked={isFavorite}
       />
       <label htmlFor="favorite" className="container">
         <svg
