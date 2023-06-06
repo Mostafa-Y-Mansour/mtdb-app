@@ -6,7 +6,6 @@ import Result from "./../../components/discoverComponents/Result";
 export default function DiscoverPage(props) {
   const [searchText, setSearchText] = useState("");
 
-  console.log(searchText);
   return (
     <>
       <Container>

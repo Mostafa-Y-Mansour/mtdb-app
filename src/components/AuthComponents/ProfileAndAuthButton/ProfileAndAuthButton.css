@@ -1,0 +1,16 @@
+.auth-btn::before {
+  display: none !important;
+  align-self: flex-end;
+}
+.auth-btn {
+  justify-self: flex-end !important;
+}
+
+@media screen and (max-width: 990px) {
+  .auth-btn {
+    margin: 0 !important;
+    position: absolute !important;
+    bottom: 20px;
+    width: 85%;
+  }
+}

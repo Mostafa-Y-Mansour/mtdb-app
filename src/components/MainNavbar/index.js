@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import burger from "../../assets/shared/icon-hamburger.svg";
 import close from "../../assets/shared/icon-close.svg";
 import "./MainNavbar.css";
+import ProfileAndAuthButton from "../AuthComponents/ProfileAndAuthButton";
 
 export default function MainNavbar() {
   const [icon, setIcon] = useState(true);
@@ -73,6 +74,8 @@ export default function MainNavbar() {
           >
             Discover
           </Nav.Link>
+
+          <ProfileAndAuthButton />
         </Nav>
       </Container>
     </Navbar>
