@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function ProfileAndAuthButton(props) {
   return (
-    <Button variant="dark" className="auth-btn" as={Link} to="/auth">
+    <Button variant="dark" className="auth-btn" as={Link} to="/auth/signin">
       Sign In/Up
     </Button>
   );

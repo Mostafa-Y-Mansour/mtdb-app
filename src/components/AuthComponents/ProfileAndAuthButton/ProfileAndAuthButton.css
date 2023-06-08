@@ -4,6 +4,7 @@
 }
 .auth-btn {
   justify-self: flex-end !important;
+  max-width: 150px;
 }
 
 @media screen and (max-width: 990px) {

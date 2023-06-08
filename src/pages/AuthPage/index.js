@@ -1,12 +1,13 @@
 import React from "react";
 import "./AuthPage.css";
-import { Outlet, useHref, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useResolvedPath } from "react-router-dom";
+import AuthUserDetails from "../../components/AuthComponents/AuthUserDetails";
 
 export default function AuthPage(props) {
   const navigate = useNavigate();
-  const path = useHref();
+  const path = useResolvedPath();
 
-  if (path === "/auth") navigate("signin");
+  if (path.pathname === "/auth") return navigate("signin");
 
   return (
     <div
@@ -20,6 +21,7 @@ export default function AuthPage(props) {
       }}
     >
       <Outlet />
+      <AuthUserDetails />
     </div>
   );
 }
