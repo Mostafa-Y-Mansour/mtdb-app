@@ -10,17 +10,30 @@ import SwiperCore, {
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
-export default function ShowHeader({ poster, coverImages }) {
+export default function ShowHeader({
+  posterMedium,
+  posterOriginal,
+  coverImages,
+}) {
   SwiperCore.use([Autoplay]);
 
   const coverSlide = () => {
     if (coverImages[coverImages.length - 1]?.image) {
       return coverImages.map((coverImage) => {
         return (
-          <SwiperSlide key={coverImage.id} className="swiper-image">
+          <SwiperSlide
+            style={{
+              background: `url(${coverImage?.image?.medium}) no-repeat`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+            key={coverImage.id}
+            className="swiper-image"
+          >
             <img
               src={coverImage?.image?.original || coverImage?.image?.medium}
               alt=""
+              loading="lazy"
             />
           </SwiperSlide>
         );
@@ -67,8 +80,19 @@ export default function ShowHeader({ poster, coverImages }) {
         >
           {coverSlide()}
         </Swiper>
-        <div className="show-image">
-          <img src={poster} alt="poster" />
+        <div
+          className="show-image"
+          style={{
+            background: `url(${posterMedium}) no-repeat`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <img
+            src={posterOriginal || posterMedium}
+            alt="poster"
+            loading="lazy"
+          />
         </div>
       </div>
     </>

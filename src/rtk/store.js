@@ -11,4 +11,9 @@ export const store = configureStore({
     favoriteShows: favoriteShowsReducers,
     userInfo: userInfoReducers,
   },
+  middleware: (getDefaultMiddleware) =>
+    // to disable non-serializable values check
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });

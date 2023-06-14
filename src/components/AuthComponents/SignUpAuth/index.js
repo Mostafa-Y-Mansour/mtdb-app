@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "./../../../config/firebase";
+import { auth, db } from "./../../../config/firebase";
 import GoogleAuth from "../AuthWithService/GoogleAuth";
 
 export default function SignUpAuth(props) {
@@ -10,6 +10,7 @@ export default function SignUpAuth(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isPasswordMatch, setPasswordMatch] = useState(false);
+  const [remember, setRemember] = useState(false);
 
   const signUpHandler = async (e) => {
     e.preventDefault();
@@ -20,9 +21,18 @@ export default function SignUpAuth(props) {
         password
       );
 
-      await updateProfile(auth.currentUser, {
+      updateProfile(auth.currentUser, {
         displayName: firstName + " " + lastName,
       });
+
+      if (remember) {
+        window.localStorage.setItem(
+          "userinfo",
+          JSON.stringify({ ...userCredential.user })
+        );
+      } else {
+        window.localStorage.clear();
+      }
     } catch (err) {
       console.log("Auth error", err);
     }
@@ -41,11 +51,11 @@ export default function SignUpAuth(props) {
   return (
     <>
       <form className="form" onSubmit={signUpHandler}>
+        <h2>sign up</h2>
         <div className="name flex">
           {/* name */}
-
           <div className="flex-column">
-            <label>First Name </label>
+            <label>First Name</label>
             <div className="inputForm">
               <input
                 placeholder="Enter your First Name"
@@ -150,6 +160,17 @@ export default function SignUpAuth(props) {
               passwordMatchHandler(e);
             }}
           />
+        </div>
+        <div>
+          <input
+            id="remember-me"
+            type="checkbox"
+            checked={remember}
+            onChange={() => {
+              setRemember(!remember);
+            }}
+          />
+          <label htmlFor="remember-me">Remember me </label>
         </div>
 
         <button className="button-submit">Sign UP</button>

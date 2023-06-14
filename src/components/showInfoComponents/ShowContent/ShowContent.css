@@ -55,3 +55,9 @@
     font-size: 1rem;
   }
 }
+
+@media screen and (max-width: 285px) {
+  .show-content > .description {
+    font-size: 0.8rem;
+  }
+}

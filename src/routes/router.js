@@ -7,6 +7,7 @@ import MainLayout from "../Layouts/MainLayout";
 import AuthPage from "../pages/AuthPage";
 import SignInAuth from "../components/AuthComponents/SignInAuth";
 import SignUpAuth from "./../components/AuthComponents/SignUpAuth";
+import ProfileDashboard from "../components/AuthComponents/ProfileDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ export const router = createBrowserRouter([
       { path: "my-shows", element: <FavoritePage /> },
       { path: "Discover", element: <DiscoverPage /> },
       { path: "shows/:showId", element: <ShowInfoPage /> },
+      { path: "profile", element: <ProfileDashboard /> },
     ],
   },
   {

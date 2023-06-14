@@ -108,12 +108,33 @@
   }
 }
 
+@media screen and (max-width: 550px) {
+  .show-box {
+    /* height: 60vw; */
+    min-height: 300px;
+  }
+  .show-box .show-info {
+    margin-bottom: 30px;
+  }
+  .show-box .show-info > .show-meta {
+    font-size: 0.7rem;
+  }
+  .show-box .show-info > .show-name {
+    font-size: 2rem;
+  }
+  .show-box .show-info > .show-details {
+    width: 180px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
 .show-details:hover svg {
   transform: translateX(4px);
-  -webkit-transform: ;
-  -moz-transform: ;
-  -ms-transform: ;
-  -o-transform: ;
+  -webkit-transform: translateX(4px);
+  -moz-transform: translateX(4px);
+  -ms-transform: translateX(4px);
+  -o-transform: translateX(4px);
 }
 
 .show-details svg {

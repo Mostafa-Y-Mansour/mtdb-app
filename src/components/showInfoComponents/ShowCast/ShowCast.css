@@ -1,4 +1,4 @@
-.cast-container {
+s.cast-container {
   width: 100%;
 }
 
@@ -20,15 +20,50 @@
   color: #fff;
 }
 
+@media screen and (max-width: 365px) {
+  .cast-container .cast-cards-wrapper .cast-card {
+    text-align: center;
+    margin-bottom: 30px;
+    width: 160px;
+    height: 300px;
+    color: #fff;
+  }
+  .cast-container .cast-cards-wrapper .cast-card > h4 {
+    font-size: 1.3rem;
+  }
+  .cast-container .cast-cards-wrapper .cast-card > p {
+    font-size: 0.8rem;
+  }
+}
+@media screen and (max-width: 285px) {
+  .cast-container .cast-cards-wrapper .cast-card {
+    text-align: center;
+    margin-bottom: 30px;
+    width: 120px;
+    height: 300px;
+    color: #fff;
+  }
+  .cast-container .cast-cards-wrapper .cast-card > h4 {
+    font-size: 1.3rem;
+  }
+  .cast-container .cast-cards-wrapper .cast-card > p {
+    font-size: 0.8rem;
+  }
+}
+
 .cast-container .cast-cards-wrapper .cast-card .person-image {
   width: 100%;
   margin: auto;
+  border: 5px solid #373b3e;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  aspect-ratio: 9/13;
+  margin-bottom: 10px;
 }
 .cast-container .cast-cards-wrapper .cast-card .person-image img {
-  margin-bottom: 10px;
   object-fit: cover;
+  object-position: center;
   width: 100%;
-  aspect-ratio: 9/13;
-
-  border: 5px solid #373b3e;
+  height: 100%;
 }

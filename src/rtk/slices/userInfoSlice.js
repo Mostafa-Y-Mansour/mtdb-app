@@ -4,13 +4,13 @@ const sliceName = "userInfoSlice";
 
 export const userInfoSlice = createSlice({
   name: sliceName,
-  initialState: {},
+  initialState: { isLogged: false },
   reducers: {
     signInUser: (state, action) => {
-      return { ...action.payload };
+      return { isLogged: true, ...action.payload };
     },
     signOutUser: (state) => {
-      return {};
+      return { isLogged: false };
     },
   },
 });

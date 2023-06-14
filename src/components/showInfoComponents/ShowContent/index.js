@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import AddToFavorite from "../../AddToFavorite";
 import "./ShowContent.css";
+import AddShow from "./AddShow";
 
 export default function ShowContent({ showObj }) {
   return (
@@ -10,6 +11,8 @@ export default function ShowContent({ showObj }) {
       <div className="show-content">
         <div className="title-container">
           <AddToFavorite showObj={showObj} />
+
+          <AddShow showObj={showObj} />
 
           <h2 className="title">{showObj?.name}</h2>
         </div>

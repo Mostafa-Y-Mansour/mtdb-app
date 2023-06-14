@@ -9,7 +9,7 @@ export default function ShowCard({ id, image, name, genre, rating }) {
   return (
     <Link className="show-card" to={`/shows/${id || "1"}`}>
       <div className="poster-image">
-        <img src={image || pictureComingSoon} alt="" />
+        <img src={image || pictureComingSoon} alt="" loading="lazy" />
       </div>
       <div className="overlay"></div>
       <div className="show-data">

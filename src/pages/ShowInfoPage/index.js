@@ -9,7 +9,7 @@ import ShowContent from "../../components/showInfoComponents/ShowContent";
 import ShowEpisodes from "../../components/showInfoComponents/ShowEpisodes";
 import CardsSlide from "../../components/CardsSlide";
 import ShowCast from "../../components/showInfoComponents/ShowCast";
-import "./ShowInfoPage.css";
+import Loading from "../../components/Loading";
 
 export default function ShowInfoPage(props) {
   const showInfo = useSelector((state) => state.showInfo);
@@ -41,12 +41,7 @@ export default function ShowInfoPage(props) {
 
   const render = () => {
     if (showInfo.length === 0 || showInfo === "pending") {
-      console.log("loading...");
-      return (
-        <h1 style={{ textAlign: "center", margin: "100px", color: "#fff" }}>
-          Loading...
-        </h1>
-      );
+      return <Loading />;
     } else if (typeof showInfo === "number") {
       return (
         <h1 style={{ textAlign: "center", margin: "100px", color: "#f00" }}>
@@ -57,7 +52,8 @@ export default function ShowInfoPage(props) {
       return (
         <>
           <ShowInfoHeader
-            poster={showInfo?.image?.original || showInfo?.image?.medium}
+            posterOriginal={showInfo?.image?.original}
+            posterMedium={showInfo?.image?.medium}
             coverImages={coverImages()}
           />
           <Container className="mb-5">

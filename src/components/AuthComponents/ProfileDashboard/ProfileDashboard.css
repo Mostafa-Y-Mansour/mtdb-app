@@ -1,0 +1,279 @@
+.dashboard-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  padding: 90px 0;
+  align-items: center;
+}
+
+.dashboard-container .profile-dashboard {
+  box-shadow: 0px 0px 20px 2px #ffffff75;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 30px;
+  width: 90%;
+  max-width: 950px;
+  border-radius: 20px;
+}
+
+.dashboard-container .profile-dashboard .profile-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.dashboard-container .profile-dashboard .main-dashboard {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+}
+
+.dashboard-container .profile-dashboard .main-profile {
+  margin: 0 auto;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+  max-width: 300px;
+  min-width: 210px;
+}
+
+.dashboard-container .profile-dashboard .main-profile .profile-image {
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  gap: 5px;
+}
+.dashboard-container .profile-dashboard .profile-image img {
+  margin-bottom: 20px;
+  width: 100%;
+  border-radius: 5%;
+  -webkit-border-radius: 5%;
+  -moz-border-radius: 5%;
+  -ms-border-radius: 5%;
+  -o-border-radius: 5%;
+}
+
+.dashboard-container .profile-dashboard .profile-image .footer {
+  box-shadow: 0px 0px 20px 2px #ffffff75;
+  width: 100%;
+  height: 40px;
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border: none;
+}
+.dashboard-container .profile-dashboard .profile-image .footer svg {
+  height: 130%;
+  fill: royalblue;
+  background-color: rgba(70, 66, 66, 0.103);
+  border-radius: 50%;
+  padding: 2px;
+  cursor: pointer;
+  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.205);
+}
+
+.dashboard-container .profile-dashboard .profile-image .footer p {
+  flex: 1;
+  text-align: center;
+  margin: 0;
+}
+
+.dashboard-container .profile-dashboard .profile-image #file {
+  display: none;
+}
+
+.dashboard-container .profile-dashboard .form {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  background-color: #ffffff;
+  padding: 30px;
+  width: 90%;
+  max-width: 450px;
+  border-radius: 20px;
+}
+.dashboard-container .profile-dashboard.form > h2 {
+  text-align: center;
+  font-size: 2.3rem;
+}
+.dashboard-container .profile-dashboard .form input {
+  display: block;
+}
+
+.dashboard-container .profile-dashboard .form button {
+  align-self: flex-end;
+}
+
+.dashboard-container .profile-dashboard .flex-column > label,
+.dashboard-container .profile-dashboard .flex > .flex-column > label {
+  color: #151717;
+  font-weight: 600;
+}
+
+.dashboard-container .profile-dashboard .inputForm {
+  border: 1.5px solid #ecedec;
+  border-radius: 10px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  transition: 0.2s ease-in-out;
+}
+
+.dashboard-container .profile-dashboard .input {
+  margin-left: 10px;
+  border-radius: 10px;
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+.dashboard-container .profile-dashboard .input:focus {
+  outline: none;
+}
+
+.dashboard-container .profile-dashboard .inputForm:focus-within {
+  border: 1.5px solid #141414;
+}
+
+.dashboard-container .profile-dashboard .flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.dashboard-container .profile-dashboard .flex > div > input {
+  cursor: pointer;
+  margin-right: 10px;
+  display: inline;
+}
+
+.dashboard-container .profile-dashboard .flex > div > label {
+  cursor: pointer;
+  font-size: 14px;
+  color: black;
+  font-weight: 400;
+}
+
+.dashboard-container .profile-dashboard .span {
+  font-size: 14px;
+  margin-left: 5px;
+  color: #2d79f3;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.dashboard-container .profile-dashboard .button-submit {
+  margin: 20px 0 0;
+  background-color: #141414;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 50px;
+  height: 50px;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.dashboard-container .profile-dashboard .button-submit::after {
+  content: "";
+  height: 100%;
+  width: 0%;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #2d79f3;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  transition: width 200ms linear;
+  -webkit-transition: width 200ms linear;
+  -moz-transition: width 200ms linear;
+  -ms-transition: width 200ms linear;
+  -o-transition: width 200ms linear;
+}
+.dashboard-container .profile-dashboard .button-submit:hover::after {
+  width: 100%;
+}
+
+.dashboard-container .profile-dashboard .p {
+  text-align: center;
+  color: black;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.dashboard-container .profile-dashboard .btn {
+  margin-top: 10px;
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  gap: 10px;
+  border: 1px solid #ededef;
+  background-color: white;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.dashboard-container .profile-dashboard.btn:hover {
+  border: 1px solid #141414 !important;
+}
+
+.dashboard-container .profile-dashboard .btn > svg {
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 700px) {
+  .dashboard-container .profile-dashboard .main-dashboard {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .dashboard-container .profile-dashboard .form {
+    padding: 0px;
+  }
+  .dashboard-container .profile-dashboard .profile-status {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+@media screen and (max-width: 400px) {
+  .dashboard-container .profile-dashboard .flex {
+    flex-direction: column !important;
+  }
+}

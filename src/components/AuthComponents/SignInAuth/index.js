@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { auth } from "../../../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import GoogleAuth from "../AuthWithService/GoogleAuth";
 
 export default function SignInAuth(props) {
@@ -23,14 +23,27 @@ export default function SignInAuth(props) {
         email,
         password
       );
+      if (remember) {
+        window.localStorage.setItem(
+          "userinfo",
+          JSON.stringify({ ...userCredential.user })
+        );
+      } else {
+        window.localStorage.clear();
+      }
+      console.log(
+        "user data me",
+        JSON.parse(window.localStorage.getItem("userinfo"))
+      );
     } catch (err) {
-      console.log("Auth Error", err);
+      console.error("Sign In Error", err);
     }
   };
 
   return (
     <>
       <form className="form" onSubmit={signInHandler}>
+        <h2>Sign In</h2>
         {/* email */}
         <div className="flex-column">
           <label>Email </label>
@@ -59,7 +72,7 @@ export default function SignInAuth(props) {
         </div>
         {/* Password */}
         <div className="flex-column">
-          <label>Password </label>
+          <label>Password</label>
         </div>
         <div className="inputForm">
           <svg

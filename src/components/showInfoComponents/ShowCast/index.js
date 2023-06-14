@@ -21,16 +21,24 @@ export default function ShowCrew({ showId }) {
     return cast.map(({ person, character }, index) => {
       return (
         <div className="cast-card" key={index}>
-          <div className="person-image">
+          <div
+            className="person-image"
+            style={{
+              background: `url(${
+                character?.image?.medium ||
+                person?.image?.medium ||
+                pictureComingSoon
+              })`,
+            }}
+          >
             <img
               src={
-                character?.image?.medium ||
                 character?.image?.original ||
-                person?.image?.medium ||
                 person?.image?.original ||
                 pictureComingSoon
               }
               alt={person?.name}
+              loading="lazy"
             />
           </div>
           <h4>{person?.name}</h4>

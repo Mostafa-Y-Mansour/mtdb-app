@@ -20,9 +20,7 @@ export default function AddToFavorite({ showObj }) {
     dispatch(removeFavoriteShow(show));
   };
 
-  console.log(favoriteShows);
-
-  // console.log(showObj);
+  // console.log(favoriteShows);
 
   const favoriteStateHandler = () => {
     if (!isFavorite) {
@@ -33,7 +31,6 @@ export default function AddToFavorite({ showObj }) {
   };
 
   useEffect(() => {
-    console.log("isFavorite", isFavorite);
     setIsFavorite(false);
     favoriteShows.forEach((show) => {
       if (show.id === showObj.id) {
@@ -45,7 +42,7 @@ export default function AddToFavorite({ showObj }) {
   return (
     <div className="add-favorite">
       <input
-        onClick={favoriteStateHandler}
+        onChange={favoriteStateHandler}
         type="checkbox"
         id="favorite"
         name="favorite-checkbox"
