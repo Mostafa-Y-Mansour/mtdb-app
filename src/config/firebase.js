@@ -31,7 +31,7 @@ export const upload = async (file, currentUser, setLoading) => {
 
     const photoURL = await getDownloadURL(fileRef);
 
-    updateProfile(currentUser, { photoURL });
+    await updateProfile(currentUser, { photoURL });
     setLoading(false);
     alert("uploaded");
   } catch (err) {

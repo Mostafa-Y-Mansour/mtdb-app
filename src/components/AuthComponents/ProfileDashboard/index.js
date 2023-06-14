@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./ProfileDashboard.css";
-import { onAuthStateChanged, updateEmail, updateProfile } from "firebase/auth";
+import {
+  onAuthStateChanged,
+  updateEmail,
+  updatePassword,
+  updateProfile,
+} from "firebase/auth";
 import { auth, upload } from "../../../config/firebase";
 import { Link } from "react-router-dom";
 import AuthUserDetails from "../AuthUserDetails";
@@ -11,7 +16,8 @@ export default function ProfileDashboard(props) {
   const [userObj, setUserObj] = useState({});
   const [name, setName] = useState("");
   const [email, SetEmail] = useState("");
-  const [password, SetPassword] = useState("");
+  // const [oldPassword, SetOldPassword] = useState("");
+  const [newPassword, SetNewPassword] = useState("");
   const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -19,11 +25,12 @@ export default function ProfileDashboard(props) {
     e.preventDefault();
     try {
       const user = auth.currentUser;
-      updateProfile(user, {
+      await updateProfile(user, {
         displayName: name,
       });
 
-      updateEmail(user, email);
+      await updateEmail(user, email);
+      await updatePassword(user, newPassword);
     } catch (err) {
       console.log("error", err);
     }
@@ -112,9 +119,15 @@ export default function ProfileDashboard(props) {
                     <path d="M18.153 6h-.009v5.342H23.5v-.002z" />
                   </g>
                 </svg>
-                <p>{loading ? "loading..." : "Update Image"}</p>
+                <p>
+                  {loading ? (
+                    <div class="loader-image"></div>
+                  ) : (
+                    "Upload new Image"
+                  )}
+                </p>
+
                 <svg
-                  onClick={() => console.log("hi")}
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -206,27 +219,7 @@ export default function ProfileDashboard(props) {
             <div className="flex-column">
               <label>Password</label>
             </div>
-            <div className="inputForm">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width={20}
-                viewBox="-64 0 512 512"
-                height={20}
-              >
-                <path d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0" />
-                <path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0" />
-              </svg>
-              <input
-                placeholder="Enter Your Old Password"
-                className="input"
-                type="password"
-                value={password}
-                // required
-                onChange={(e) => {
-                  SetPassword(e.target.value);
-                }}
-              />
-            </div>
+
             <div className="inputForm">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -241,10 +234,10 @@ export default function ProfileDashboard(props) {
                 placeholder="Update Your Password"
                 className="input"
                 type="password"
-                value={password}
+                value={newPassword}
                 // required
                 onChange={(e) => {
-                  SetPassword(e.target.value);
+                  SetNewPassword(e.target.value);
                 }}
               />
             </div>

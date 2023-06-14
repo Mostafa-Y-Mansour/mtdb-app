@@ -21,7 +21,6 @@ export default function AuthPage(props) {
       }}
     >
       <Outlet />
-      <AuthUserDetails />
     </div>
   );
 }

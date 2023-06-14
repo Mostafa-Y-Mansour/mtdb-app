@@ -6,11 +6,15 @@
     "headlessui",
     "heroicons",
     "jsnb",
+    "Mansour",
+    "Mostafa",
     "mshe",
     "MTDB",
     "rapidapi",
     "reduxjs",
-    "signin"
+    "signin",
+    "Swiper",
+    "watchlist"
   ],
   "editor.fontFamily": "'Cascadia Code', Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,

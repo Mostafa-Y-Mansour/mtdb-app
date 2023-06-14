@@ -61,6 +61,8 @@
   -moz-border-radius: 5%;
   -ms-border-radius: 5%;
   -o-border-radius: 5%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }
 
 .dashboard-container .profile-dashboard .profile-image .footer {
@@ -90,6 +92,7 @@
   flex: 1;
   text-align: center;
   margin: 0;
+  font-size: 0.8rem;
 }
 
 .dashboard-container .profile-dashboard .profile-image #file {
@@ -199,6 +202,7 @@
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
+  justify-self: end;
 }
 .dashboard-container .profile-dashboard .button-submit::after {
   content: "";
@@ -275,5 +279,41 @@
 @media screen and (max-width: 400px) {
   .dashboard-container .profile-dashboard .flex {
     flex-direction: column !important;
+  }
+}
+
+.loader-image {
+  margin: auto;
+  display: block;
+  --height-of-loader: 4px;
+  --loader-color: #0071e2;
+  width: 85%;
+  height: var(--height-of-loader);
+  border-radius: 30px;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.loader-image::before {
+  content: "";
+  position: absolute;
+  background: var(--loader-color);
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  border-radius: 30px;
+  animation: moving 1s ease-in-out infinite;
+}
+
+@keyframes moving {
+  50% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0;
+    right: 0;
+    left: unset;
   }
 }
