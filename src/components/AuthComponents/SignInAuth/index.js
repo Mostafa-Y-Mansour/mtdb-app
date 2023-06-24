@@ -1,19 +1,24 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import { auth } from "../../../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import GoogleAuth from "../AuthWithService/GoogleAuth";
+import { signInUser } from "../../../rtk/slices/userInfoSlice";
+import { Alert } from "react-bootstrap";
 
 export default function SignInAuth(props) {
   const userInfo = useSelector((state) => state.userInfo);
+  const dispatch = useDispatch();
 
-  console.log("user data", userInfo);
+  console.log("user info", userInfo);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
+  const [signInErr, setSignInErr] = useState(null);
+  const navigate = useNavigate();
 
   const signInHandler = async (e) => {
     e.preventDefault();
@@ -23,6 +28,7 @@ export default function SignInAuth(props) {
         email,
         password
       );
+      dispatch(signInUser({ ...userCredential.user }));
       if (remember) {
         window.localStorage.setItem(
           "userinfo",
@@ -35,15 +41,38 @@ export default function SignInAuth(props) {
         "user data me",
         JSON.parse(window.localStorage.getItem("userinfo"))
       );
+
+      setSignInErr(null);
     } catch (err) {
-      console.error("Sign In Error", err);
+      setSignInErr(err);
+      console.log("Sign In Error", err);
     }
   };
 
+  const errorHandler = () => {
+    if (signInErr && password.length < 6) {
+      return (
+        <Alert variant={"danger"}>
+          Password should be more than 6 characters
+        </Alert>
+      );
+    } else if (signInErr) {
+      return <Alert variant={"danger"}>Email or password are incorrect</Alert>;
+    } else {
+      return "";
+    }
+  };
+
+  useEffect(() => {
+    if (userInfo.isLogged) {
+      return navigate("/profile");
+    }
+  }, [userInfo]);
   return (
     <>
       <form className="form" onSubmit={signInHandler}>
         <h2>Sign In</h2>
+        {errorHandler()}
         {/* email */}
         <div className="flex-column">
           <label>Email </label>

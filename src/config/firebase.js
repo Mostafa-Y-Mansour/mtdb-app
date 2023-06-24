@@ -1,8 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-
-import { getAuth, updateProfile } from "firebase/auth";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDpKjKrO8uhIZEhIxtGDPQjkv9udObdaqs",
@@ -19,22 +18,5 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
 export const auth = getAuth(app);
+
 export const storage = getStorage(app);
-
-// storage
-export const upload = async (file, currentUser, setLoading) => {
-  try {
-    const fileRef = ref(storage, currentUser.uid + ".png");
-    setLoading(true);
-
-    await uploadBytes(fileRef, file);
-
-    const photoURL = await getDownloadURL(fileRef);
-
-    await updateProfile(currentUser, { photoURL });
-    setLoading(false);
-    alert("uploaded");
-  } catch (err) {
-    console.log("error", err);
-  }
-};

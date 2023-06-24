@@ -4,34 +4,43 @@ import FavShowsContainer from "../../components/FavoriteShowComponents/FavShowsC
 import { useSelector } from "react-redux";
 
 export default function FavoritePage() {
+  const userInfo = useSelector((state) => state.userInfo);
+
   const favoriteShows = useSelector((state) => state.favoriteShows);
 
   const premiereFavShows = (() => {
     return favoriteShows.filter((show) => show?.status === "Running");
   })();
+
   const runningFavShows = (() => {
     return favoriteShows.filter((show) => show?.status === "Running");
   })();
+
   const endedFavShows = (() => {
     return favoriteShows.filter((show) => show?.status !== "Running");
   })();
 
-  console.log("runningFavShows", runningFavShows);
-  console.log("endedFavShows", endedFavShows);
-
   return (
     <>
-      <Container className="my-5 ">
-        <FavShowsContainer
-          className="mt-3"
-          status={"Running"}
-          filteredData={runningFavShows}
-        />
-        <FavShowsContainer
-          className="mt-3"
-          status={"Ended"}
-          filteredData={endedFavShows}
-        />
+      <Container className="py-5 " style={{ minHeight: "100vh" }}>
+        {!userInfo.isLogged ? (
+          <h2 className="text-center" style={{ marginTop: "40vh" }}>
+            You Are Not Logged in.
+          </h2>
+        ) : (
+          <>
+            <FavShowsContainer
+              className="mt-3"
+              status={"Running"}
+              filteredData={runningFavShows}
+            />
+            <FavShowsContainer
+              className="mt-3"
+              status={"Ended"}
+              filteredData={endedFavShows}
+            />
+          </>
+        )}
       </Container>
     </>
   );

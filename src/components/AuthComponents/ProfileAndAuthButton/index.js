@@ -1,29 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./ProfileAndAuthButton.css";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import maleProfileImage from "../../../assets/shared/male-profile-image.jpg";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../../config/firebase";
-import { signInUser, signOutUser } from "../../../rtk/slices/userInfoSlice";
 
 export default function ProfileAndAuthButton(props) {
   const userInfo = useSelector((state) => state.userInfo);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const listen = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        dispatch(signInUser({ ...user }));
-      } else {
-        dispatch(signOutUser());
-      }
-    });
-    return () => {
-      listen();
-    };
-  }, []);
 
   const checkLogging = () => {
     if (userInfo.isLogged) {

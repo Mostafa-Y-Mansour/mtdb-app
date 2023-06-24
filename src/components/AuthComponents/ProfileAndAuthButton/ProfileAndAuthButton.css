@@ -51,9 +51,16 @@
   .auth-btn {
     margin: 0 !important;
     margin-left: 0 !important;
-    position: absolute !important;
     width: 90% !important;
     max-width: 90% !important;
+    position: absolute !important;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
   }
   .profile-btn {
     margin: 0 !important;

@@ -1,11 +1,13 @@
 import { signOut } from "firebase/auth";
-import React from "react";
+import React, { useEffect } from "react";
 import { auth } from "../../../config/firebase";
 import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 export default function AuthUserDetails(props) {
   const userInfo = useSelector((state) => state.userInfo);
+  const navigate = useNavigate();
 
   const userSignOut = async () => {
     try {
@@ -17,6 +19,8 @@ export default function AuthUserDetails(props) {
     }
   };
 
+  useEffect(() => {}, [userInfo]);
+
   return (
     <>
       {userInfo.isLogged ? (
@@ -26,7 +30,7 @@ export default function AuthUserDetails(props) {
           </Button>
         </>
       ) : (
-        <>signed out</>
+        navigate("/auth/signin")
       )}
     </>
   );

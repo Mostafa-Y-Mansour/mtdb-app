@@ -110,11 +110,10 @@
 
 @media screen and (max-width: 550px) {
   .show-box {
-    /* height: 60vw; */
-    min-height: 300px;
+    min-height: 540px;
   }
   .show-box .show-info {
-    margin-bottom: 30px;
+    margin-bottom: 45px;
   }
   .show-box .show-info > .show-meta {
     font-size: 0.7rem;

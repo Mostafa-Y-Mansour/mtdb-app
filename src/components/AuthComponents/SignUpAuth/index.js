@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "./../../../config/firebase";
 import GoogleAuth from "../AuthWithService/GoogleAuth";
+import { useSelector } from "react-redux";
+import { Alert } from "react-bootstrap";
 
 export default function SignUpAuth(props) {
   const [firstName, setFirstName] = useState("");
@@ -11,6 +13,11 @@ export default function SignUpAuth(props) {
   const [password, setPassword] = useState("");
   const [isPasswordMatch, setPasswordMatch] = useState(false);
   const [remember, setRemember] = useState(false);
+  const [signUpErr, setSignUpErr] = useState(null);
+
+  const userInfo = useSelector((state) => state.userInfo);
+
+  const navigate = useNavigate();
 
   const signUpHandler = async (e) => {
     e.preventDefault();
@@ -33,8 +40,10 @@ export default function SignUpAuth(props) {
       } else {
         window.localStorage.clear();
       }
+      setSignUpErr(null);
     } catch (err) {
       console.log("Auth error", err);
+      setSignUpErr(err);
     }
   };
 
@@ -48,10 +57,31 @@ export default function SignUpAuth(props) {
     return state(e.target.value);
   };
 
+  const errorHandler = () => {
+    if (signUpErr && password.length < 6) {
+      return (
+        <Alert variant={"danger"}>
+          Password should be more than 6 characters
+        </Alert>
+      );
+    } else if (signUpErr) {
+      return <Alert variant={"danger"}>Email or password are incorrect</Alert>;
+    } else {
+      return "";
+    }
+  };
+
+  useEffect(() => {
+    if (userInfo.isLogged) {
+      return navigate("/profile");
+    }
+  }, [userInfo]);
+
   return (
     <>
       <form className="form" onSubmit={signUpHandler}>
         <h2>sign up</h2>
+        {errorHandler()}
         <div className="name flex">
           {/* name */}
           <div className="flex-column">
@@ -160,17 +190,6 @@ export default function SignUpAuth(props) {
               passwordMatchHandler(e);
             }}
           />
-        </div>
-        <div>
-          <input
-            id="remember-me"
-            type="checkbox"
-            checked={remember}
-            onChange={() => {
-              setRemember(!remember);
-            }}
-          />
-          <label htmlFor="remember-me">Remember me </label>
         </div>
 
         <button className="button-submit">Sign UP</button>

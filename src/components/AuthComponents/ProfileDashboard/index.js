@@ -6,11 +6,13 @@ import {
   updatePassword,
   updateProfile,
 } from "firebase/auth";
-import { auth, upload } from "../../../config/firebase";
-import { Link } from "react-router-dom";
+import { auth, storage } from "../../../config/firebase";
 import AuthUserDetails from "../AuthUserDetails";
-import { Alert, Button } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import profileImage from "../../../assets/shared/male-profile-image.jpg";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useDispatch, useSelector } from "react-redux";
+import { signInUser, signOutUser } from "../../../rtk/slices/userInfoSlice";
 
 export default function ProfileDashboard(props) {
   const [userObj, setUserObj] = useState({});
@@ -21,16 +23,40 @@ export default function ProfileDashboard(props) {
   const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const userInfo = useSelector((state) => state.userInfo);
+  const dispatch = useDispatch();
+
   const profileUpdateHandler = async (e) => {
     e.preventDefault();
     try {
       const user = auth.currentUser;
+      console.log("user", user);
       await updateProfile(user, {
         displayName: name,
       });
 
       await updateEmail(user, email);
       await updatePassword(user, newPassword);
+
+      dispatch(signInUser({ ...user }));
+    } catch (err) {
+      console.log("update error", err);
+    }
+  };
+
+  // storage
+  const upload = async (file, currentUser, setLoading) => {
+    try {
+      const fileRef = ref(storage, currentUser.uid + ".png");
+      setLoading(true);
+
+      await uploadBytes(fileRef, file);
+
+      const photoURL = await getDownloadURL(fileRef);
+
+      updateProfile(currentUser, { photoURL });
+      dispatch(signInUser(currentUser));
+      setLoading(false);
     } catch (err) {
       console.log("error", err);
     }
@@ -40,28 +66,45 @@ export default function ProfileDashboard(props) {
     upload(photo, auth.currentUser, setLoading);
     setPhoto(null);
   };
+
   const handleChange = (e) => {
     if (e.target.files[0]) {
       setPhoto(e.target.files[0]);
     }
-
     if (photo) {
       return handleClick();
     }
   };
 
+  const profileActivationStatus = (() => {
+    if (userObj?.emailVerified) {
+      return <Alert variant={"primary"}>Account is Verified</Alert>;
+    } else {
+      return <Alert variant={"warning"}>Account is not Verified</Alert>;
+    }
+  })();
+
+  const profileImageHandler = (() => {
+    if (userObj?.photoURL) {
+      return userObj.photoURL;
+    } else {
+      return profileImage;
+    }
+  })();
+
   useEffect(() => {
     console.log("photo", photo);
     const listen = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
         setUserObj({ ...user });
         setName(user?.displayName);
         SetEmail(user?.email);
+        dispatch(signInUser({ ...user }));
       } else {
         setUserObj({});
         setName("");
         SetEmail("");
+        dispatch(signOutUser());
       }
     });
 
@@ -74,22 +117,6 @@ export default function ProfileDashboard(props) {
     };
   }, [photo]);
 
-  const profileActivationStatus = (() => {
-    if (userObj?.emailVerified) {
-      return <Alert variant={"primary"}>account is Verified</Alert>;
-    } else {
-      return <Alert variant={"warning"}>account is not Verified</Alert>;
-    }
-  })();
-
-  const profileImageHandler = (() => {
-    if (userObj?.photoURL) {
-      return userObj.photoURL;
-    } else {
-      return profileImage;
-    }
-  })();
-
   return (
     <div className="dashboard-container">
       <div className="profile-dashboard">
@@ -100,7 +127,7 @@ export default function ProfileDashboard(props) {
         <div className="main-dashboard">
           <div className="main-profile">
             <div className="profile-image">
-              <img src={profileImageHandler} alt="" />
+              <img src={profileImageHandler} alt="" loading="lazy" />
 
               <label htmlFor="file" className="footer">
                 <svg
@@ -126,37 +153,18 @@ export default function ProfileDashboard(props) {
                     "Upload new Image"
                   )}
                 </p>
-
+                {/*  */}
+                {/*?xml version="1.0" encoding="utf-8"?*/}
+                {/* Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools */}
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <g id="SVGRepo_bgCarrier" strokeWidth={0} />
-                  <g
-                    id="SVGRepo_tracerCarrier"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <g id="SVGRepo_iconCarrier">
-                    <path
-                      d="M5.16565 10.1534C5.07629 8.99181 5.99473 8 7.15975 8H16.8402C18.0053 8 18.9237 8.9918 18.8344 10.1534L18.142 19.1534C18.0619 20.1954 17.193 21 16.1479 21H7.85206C6.80699 21 5.93811 20.1954 5.85795 19.1534L5.16565 10.1534Z"
-                      stroke="#000000"
-                      strokeWidth={2}
-                    />
-                    <path
-                      d="M19.5 5H4.5"
-                      stroke="#000000"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                    />
-
-                    <path
-                      d="M10 3C10 2.44772 10.4477 2 11 2H13C13.5523 2 14 2.44772 14 3V5H10V3Z"
-                      stroke="#000000"
-                      strokeWidth={2}
-                    />
-                  </g>
+                  <path d="M13.0344 14.0062C13.0361 14.5585 12.5898 15.0076 12.0375 15.0093C11.4853 15.0111 11.0361 14.5647 11.0344 14.0125L13.0344 14.0062Z" />
+                  <path d="M9.71867 6.72364L11.0075 5.42672L11.0344 14.0125L13.0344 14.0062L13.0075 5.42045L14.3044 6.70926C14.6961 7.09856 15.3293 7.09659 15.7186 6.70484C16.1079 6.3131 16.1059 5.67993 15.7142 5.29064L11.9955 1.59518L8.30003 5.31387L9.71867 6.72364Z" />
+                  <path d="M8.30003 5.31387C7.91073 5.70562 7.9127 6.3388 8.30445 6.7281C8.69619 7.1174 9.32938 7.11539 9.71867 6.72364L8.30003 5.31387Z" />
+                  <path d="M4 12C4 10.8954 4.89543 10 6 10C6.55228 10 7 9.55229 7 9C7 8.44772 6.55228 8 6 8C3.79086 8 2 9.79086 2 12V18C2 20.2091 3.79086 22 6 22H17C19.7614 22 22 19.7614 22 17V12C22 9.79086 20.2091 8 18 8C17.4477 8 17 8.44772 17 9C17 9.55229 17.4477 10 18 10C19.1046 10 20 10.8954 20 12V17C20 18.6569 18.6569 20 17 20H6C4.89543 20 4 19.1046 4 18V12Z" />
                 </svg>
               </label>
 
